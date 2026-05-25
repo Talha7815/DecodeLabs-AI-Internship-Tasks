@@ -1,0 +1,90 @@
+# 🤖 Project 1: Rule-Based AI Chatbot
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![AI](https://img.shields.io/badge/AI-Chatbot-red.svg)
+![Control Flow](https://img.shields.io/badge/Concept-Control%20Flow-green.svg)
+![DecodeLabs](https://img.shields.io/badge/DecodeLabs-Project%201-orange.svg)
+
+**Batch 2026 | Powered by DecodeLabs**
+
+</div>
+
+---
+
+## 📌 Project Overview
+
+This is a **Rule-Based AI Chatbot** built as the first project of my internship at DecodeLabs. Unlike machine learning chatbots that learn from data, this chatbot uses **pure deterministic logic** - every response is explicitly programmed using if-else logic and dictionary lookups.
+
+### Project Goal
+Create a simple rule-based chatbot that responds to predefined user inputs using control flow and decision-making logic.
+
+---
+
+## 🎯 Key Requirements Achieved
+
+| Requirement | Status |
+|-------------|--------|
+| Handle greetings and exit commands | ✅ |
+| Use if-else logic for responses | ✅ |
+| Run in a continuous loop | ✅ |
+| Dictionary-based responses (Hash Map) | ✅ |
+| Case & whitespace sanitization | ✅ |
+| Fallback response for unknown inputs | ✅ |
+| 5+ intents in knowledge base | ✅ |
+
+---
+
+## 🏗️ Architecture (IPO Model)
+┌─────────────────────────────────────────────────────────────┐
+│ IPO MODEL │
+├───────────────┬─────────────────────────┬───────────────────┤
+│ INPUT │ PROCESS │ OUTPUT │
+├───────────────┼─────────────────────────┼───────────────────┤
+│ User types │ → .strip().lower() │ → Dictionary │
+│ "Hello" │ → Sanitization │ lookup (.get()) │
+│ │ → Check exit commands │ → Bot response │
+│ │ → Dictionary lookup │ │
+└───────────────┴─────────────────────────┴───────────────────┘
+
+---
+
+## 💬 Sample Interaction
+==================================================
+🤖 DecodeLabs Rule-Based AI Chatbot 🤖
+==================================================
+Type 'help' to see what I can do.
+Type 'bye', 'exit', or 'quit' to leave.
+You: hello
+Bot: Hi there! Welcome to DecodeLabs. How can I help you today?
+
+You: tell me a joke
+Bot: Why did the AI go to therapy? It had too many if-else conflicts!
+
+You: what is ai
+Bot: AI is making machines think like humans. But right now, I'm just following rules - that's the foundation!
+
+You: help
+Bot: I can respond to greetings, answer basic questions, and follow commands...
+
+You: bye
+Bot: Goodbye! Keep building. See you in Project 2!
+
+==================================================
+Session ended. Your AI journey continues...
+==================================================
+
+---
+
+## 🔧 Technical Implementation
+
+### Knowledge Base (Dictionary)
+```python
+responses = {
+    'hello': 'Hi there! Welcome to DecodeLabs...',
+    'how are you': "I'm functioning perfectly!",
+    'tell me a joke': "Why did the AI go to therapy?...",
+    'bye': 'Goodbye! Keep building...',
+    # ... more intents
+}
