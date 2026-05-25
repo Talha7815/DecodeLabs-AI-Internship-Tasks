@@ -1,0 +1,159 @@
+# 📊 Project 2: Data Classification Using AI (KNN)
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Machine Learning](https://img.shields.io/badge/Machine-Learning-Supervised-red.svg)
+![KNN](https://img.shields.io/badge/Algorithm-KNN-green.svg)
+![DecodeLabs](https://img.shields.io/badge/DecodeLabs-Project%202-orange.svg)
+
+**Batch 2026 | Powered by DecodeLabs**
+
+</div>
+
+---
+
+## 📌 Project Overview
+
+This project implements a **Supervised Learning** classification model using the **K-Nearest Neighbors (KNN)** algorithm. Instead of writing explicit rules, the machine learns patterns from historical data to classify new information.
+
+### Project Goal
+Build a basic classification model that can learn from data and make predictions on new, unseen samples.
+
+---
+
+## 🎯 Key Requirements Achieved
+
+| Requirement | Status |
+|-------------|--------|
+| Load and understand a dataset | ✅ |
+| Split data into training and testing sets | ✅ |
+| Apply a simple classification algorithm | ✅ |
+| Feature scaling (StandardScaler) | ✅ |
+| Confusion Matrix evaluation | ✅ |
+| F1 Score calculation | ✅ |
+
+---
+
+## 📊 Dataset: Iris Benchmark
+
+The classic Iris dataset (Fisher's Iris) is used for this project.
+
+| Property | Value |
+|----------|-------|
+| **Total Samples** | 150 |
+| **Features** | 4 (sepal length, sepal width, petal length, petal width) |
+| **Classes** | 3 (Setosa, Versicolor, Virginica) |
+| **Class Balance** | 50 samples per class (perfectly balanced) |
+
+### Feature Correlation Heatmap
+![Correlation Matrix](https://via.placeholder.com/400x300?text=Correlation+Matrix)
+
+---
+
+## 🏗️ Architecture
+┌─────────────────────────────────────────────────────────────────────┐
+│ MASTER BLUEPRINT: IPO FRAMEWORK │
+├─────────────────┬─────────────────────────┬───────────────────────┤
+│ INPUT │ PROCESS │ OUTPUT │
+├─────────────────┼─────────────────────────┼───────────────────────┤
+│ Iris Dataset │ → Feature Scaling │ → Predictions │
+│ (150 samples, │ (StandardScaler) │ │
+│ 4 features) │ → Train-Test Split │ → Confusion Matrix │
+│ │ (70% / 30%) │ │
+│ │ → KNN Algorithm │ → Accuracy & F1 Score │
+│ │ (K=5, then optimized) │ │
+└─────────────────┴─────────────────────────┴───────────────────────┘
+
+---
+
+## 📈 Results
+
+### Base Model (K=5)
+
+| Metric | Score |
+|--------|-------|
+| **Accuracy** | 91.11% |
+| **F1 Score (Macro)** | 90.95% |
+
+### Classification Report (K=5)
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| Setosa | 1.00 | 1.00 | 1.00 | 15 |
+| Versicolor | 0.79 | 1.00 | 0.88 | 15 |
+| Virginica | 1.00 | 0.73 | 0.85 | 15 |
+
+### Confusion Matrix (K=5)
+
+[[15 0 0]
+[ 0 15 0]
+[ 0 4 11]]
+
+---
+
+## 🔬 Experiments Performed
+
+### Experiment 1: K-Value Optimization
+
+Tested K values from 1 to 20 to find the optimal K:
+
+| K Value | Training Accuracy | Testing Accuracy |
+|---------|------------------|------------------|
+| 1 | 100.00% | 93.33% |
+| 5 | 98.10% | 91.11% |
+| 9 | 98.10% | **95.56%** |
+| 15 | 98.10% | 93.33% |
+| 20 | 96.19% | 88.89% |
+
+**🏆 Best K Value: 9 (Accuracy: 95.56%)**
+
+### Experiment 2: Algorithm Comparison
+
+Compared 7 different machine learning algorithms:
+
+| Rank | Algorithm | Accuracy |
+|------|-----------|----------|
+| 1 | SVM (RBF) | 93.33% |
+| 2 | Gradient Boosting | 93.33% |
+| 3 | KNN (k=5) | 91.11% |
+| 4 | Decision Tree | 91.11% |
+| 5 | Naive Bayes | 91.11% |
+| 6 | Logistic Regression | 91.11% |
+| 7 | Random Forest | 88.89% |
+
+### Experiment 3: Custom Predictions
+
+Tested the model with new, unseen flower measurements:
+
+| Flower | Measurements | Predicted | Confidence |
+|--------|--------------|-----------|------------|
+| 1 | [5.1, 3.5, 1.4, 0.2] | Setosa | 100.0% |
+| 2 | [6.5, 3.0, 5.2, 2.0] | Virginica | 100.0% |
+| 3 | [5.9, 3.0, 4.2, 1.5] | Versicolor | 100.0% |
+| 4 | [4.8, 3.0, 1.4, 0.3] | Setosa | 100.0% |
+| 5 | [7.0, 3.2, 4.7, 1.4] | Versicolor | 80.0% |
+
+---
+
+## 🧠 How KNN Works
+
+The K-Nearest Neighbors algorithm works on the **proximity principle**: similar things exist in close proximity.
+K=5. Majority Vote: BLUE
+
+● ● ● ● ● ● ● ● ● ●
+● ● ● ● ● ? ● ● ● ● ●
+● ● ● ● ● ● ● ● ● ● ● ●
+● ● ● ● ● ● ● ● ● ●
+● ● ● ● ● ● ● ● ●
+
+● = Blue Class ● = Red Class ? = Unknown
+The 5 nearest neighbors are all blue → Predict BLUE
+
+### Why Scaling is Crucial
+
+KNN uses distance calculations. Without scaling, features with larger ranges would dominate the distance calculation.
+
+```python
+# Before scaling: Features have different scales
+# After scaling (StandardScaler): Mean = 0, Variance = 1
