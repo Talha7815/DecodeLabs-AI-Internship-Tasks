@@ -1,0 +1,187 @@
+# 🎯 Project 3: AI Recommendation Logic
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Recommendation System](https://img.shields.io/badge/Recommendation-Content--Based-red.svg)
+![TF-IDF](https://img.shields.io/badge/NLP-TF--IDF-green.svg)
+![DecodeLabs](https://img.shields.io/badge/DecodeLabs-Project%203-orange.svg)
+
+**Batch 2026 | Powered by DecodeLabs**
+
+</div>
+
+---
+
+## 📌 Project Overview
+
+This project implements a **Content-Based Recommendation System** that matches user skills with relevant tech job roles. Unlike collaborative filtering (which relies on other users' behavior), this system focuses on matching user preferences directly to item attributes.
+
+### Project Goal
+Create a simple recommendation system based on user preferences using similarity matching and vector space models.
+
+---
+
+## 🎯 Key Requirements Achieved
+
+| Requirement | Status |
+|-------------|--------|
+| Take user input (3 skills/interests) | ✅ |
+| Match preferences using similarity logic | ✅ |
+| Display recommended items | ✅ |
+| TF-IDF vectorization | ✅ |
+| Cosine similarity for matching | ✅ |
+| Top-N filtering (Top 3 recommendations) | ✅ |
+| Cold Start handling | ✅ |
+
+---
+
+## 🏗️ Architecture (IPO Model)
+┌─────────────────────────────────────────────────────────────────────────┐
+│ RECOMMENDATION PIPELINE │
+├─────────────────┬─────────────────────────────┬───────────────────────┤
+│ INPUT │ PROCESS │ OUTPUT │
+├─────────────────┼─────────────────────────────┼───────────────────────┤
+│ 3 User Skills │ → TF-IDF Vectorization │ → Top 3 Job Roles │
+│ (e.g., Python, │ → Cosine Similarity │ with Match Scores │
+│ SQL, ML) │ → Similarity Scoring │ │
+│ │ → Sorting (Descending) │ │
+│ │ → Filtering (Top-N) │ │
+└─────────────────┴─────────────────────────────┴───────────────────────┘
+
+---
+
+## 📊 Dataset: Tech Job Roles
+
+| # | Role | Key Skills |
+|---|------|-------------|
+| 1 | Data Scientist | Python, SQL, Statistics, Machine Learning, Pandas, NumPy |
+| 2 | Machine Learning Engineer | Python, TensorFlow, PyTorch, Scikit-learn, Deep Learning, NLP |
+| 3 | Full Stack Developer | JavaScript, Python, React, Node.js, MongoDB, SQL, HTML, CSS |
+| 4 | Backend Developer | Python, Java, Node.js, SQL, REST APIs, Spring Boot, Django |
+| 5 | Frontend Developer | JavaScript, React, HTML, CSS, Vue, Angular |
+| 6 | DevOps Engineer | Docker, Kubernetes, Jenkins, AWS, CI/CD, Linux, Terraform |
+| 7 | Cloud Architect | AWS, Azure, GCP, Cloud Computing, Terraform, Kubernetes |
+| 8 | Mobile Dev (iOS) | Swift, iOS, Xcode, UIKit, Core Data |
+| 9 | Mobile Dev (Android) | Kotlin, Java, Android, Android Studio, REST APIs |
+| 10 | Cybersecurity Analyst | Network Security, Kali Linux, Cryptography, Risk Assessment |
+| 11 | Database Administrator | SQL, PostgreSQL, MySQL, Database Design, MongoDB |
+| 12 | QA Engineer | Testing, Selenium, Automation, JUnit, pytest, CI/CD |
+| 13 | Product Manager | Agile, Scrum, Product Management, JIRA, Market Research |
+| 14 | UI/UX Designer | Figma, Adobe XD, Wireframing, Prototyping, User Research |
+| 15 | Game Developer | C#, Unity, C++, Game Physics, 3D Modeling, Unreal Engine |
+
+---
+
+## 🔧 Technical Concepts Explained
+
+### Content-Based vs Collaborative Filtering
+
+| Aspect | Content-Based Filtering | Collaborative Filtering |
+|--------|------------------------|------------------------|
+| **Driven by** | Item attributes | Community behavior |
+| **How it works** | Maps user preferences to item properties | Identifies patterns among similar users |
+| **Data needed** | Item metadata only | Historical user interactions |
+| **Cold Start** | Handles new items easily | Struggles with new users/items |
+
+**Project 3 uses Content-Based Filtering**
+
+---
+
+### TF-IDF Vectorization
+
+Term Frequency-Inverse Document Frequency (TF-IDF) transforms text into numerical vectors:
+
+| Term | TF (Term Frequency) | IDF (Inverse Document Frequency) |
+|------|--------------------|----------------------------------|
+| Python | High in Data Science roles | Medium (appears frequently) |
+| obscure_skill | Low in individual docs | High (rare, thus important) |
+
+**Formula:** `TF-IDF = Term Frequency × log(Total Documents / Documents with term)`
+
+---
+
+### Cosine Similarity
+
+Measures the **angle** between two vectors, ignoring magnitude:
+
+| Similarity Score | Interpretation |
+|------------------|----------------|
+| 1.0 | Perfect match (same direction) |
+| 0.7-0.9 | Strong match |
+| 0.4-0.6 | Moderate match |
+| 0.0 | No match (perpendicular) |
+| -1.0 | Opposite direction (not possible with TF-IDF) |
+
+---
+
+## 💬 Sample Output
+============================================================
+🎯 DecodeLabs - Project 3: AI Recommendation Logic
+📌 Tech Stack Recommender (Content-Based Filtering)
+============================================================
+
+❓ Please enter 3 skills you have or want to work with:
+(Examples: Python, JavaScript, AWS, React, SQL, Docker, etc.)
+
+Skill 1: Python
+Skill 2: Machine Learning
+Skill 3: SQL
+
+============================================================
+🎯 YOUR PERSONALIZED RECOMMENDATIONS
+============================================================
+
+📌 Based on your skills: PYTHON, MACHINE LEARNING, SQL
+
+🏆 #1: Data Scientist
+📊 Match Score: 85.3%
+🔧 Required Skills: Python, SQL, Statistics, Machine Learning...
+✅ Your matching skills: python, machine learning, sql
+
+🏆 #2: Machine Learning Engineer
+📊 Match Score: 78.1%
+🔧 Required Skills: Python, TensorFlow, PyTorch, Scikit-learn...
+✅ Your matching skills: python, machine learning
+
+🏆 #3: Backend Developer
+📊 Match Score: 45.2%
+🔧 Required Skills: Python, Java, Node.js, SQL, REST APIs...
+✅ Your matching skills: python, sql
+
+---
+
+## 🧪 Test Cases
+
+| Skills Entered | Expected Top Result | Match Score |
+|----------------|---------------------|--------------|
+| React, JavaScript, HTML | Frontend/Full Stack Dev | 28-35% |
+| Python, SQL, Statistics | Data Scientist | 25-30% |
+| AWS, Docker, Kubernetes | Cloud Architect | 25-30% |
+| Swift, iOS, Xcode | iOS Developer | 25-30% |
+| Python, AI, React | Full Stack/Data Science | 25-29% |
+
+---
+
+## ❄️ The Cold Start Problem
+
+**Problem:** New users have no history → their profile vector is all zeros → similarity scores = 0
+
+**Solutions Implemented:**
+1. ✅ **Onboarding Survey** - Asks for 3 skills to bootstrap the profile
+2. ✅ **Trending Fallbacks** - Shows popular roles if no matches found
+3. ✅ **Partial Matching** - Still works if some skills are recognized
+
+---
+
+## 🚀 How to Run
+
+### Option 1: Google Colab (Recommended)
+1. Go to [Google Colab](https://colab.research.google.com/)
+2. Upload `Tasks 3.ipynb`
+3. Run all cells
+4. Enter your 3 skills when prompted
+
+### Option 2: Local Python
+```bash
+python recommendation_system.py
